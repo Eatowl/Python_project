@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% block Artic %}
+	<a href="/">
+		<h4> {{ Article.article_title }} </h4>
+	</a>
+	<p> {{ Article.article_text }} </p>
+	<h6>Дата и время публикации {{ Article.article_date }} </h6>
+	<hr>
+	<p>Комментарии</p>
+	{% for c in comment %}
+		<h5> {{ c.comment_name }} </h5>
+		<h5> {{ c.comment_text }} </h5>
+	{% endfor %}
+	
+
+	<script>
+	function getCookie(name) {
+	    var cookieValue = null;
+	    if (document.cookie && document.cookie != '') {
+	        var cookies = document.cookie.split(';');
+	        for (var i = 0; i < cookies.length; i++) {
+	            var cookie = jQuery.trim(cookies[i]);
+	            // Does this cookie string begin with the name we want?
+	            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	}
+	var csrftoken = getCookie('csrftoken');
+	        $( function() {
+	            $('#getForecast').click( function() {
+	                
+	                var data = {'comment_body': data};
+	                $.post( "/article/addcomment/3/", data, success, "json" );
+	            } );
+
+	            function success(data) {
+	            	alert(data.comment_body);
+	                
+	            }
+
+	        } );
+
+    </script>
+    {% csrf_token %}
+
+
+    <button id="getForecast" >Отправить</button>
+
+	
+
+{% endblock %}

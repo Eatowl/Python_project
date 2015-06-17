@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block Artic %}
+	{% for article in articles %}
+		<h4><a href="/article/get/{{article.id}}">{{ article.article_title }}</a></h4>
+		<p> {{ article.article_text }} </p>
+		<h6>Дата и время публикации {{ article.article_date }} </h6>
+		<hr>
+	{% endfor %}
+{% endblock %}
+{% block List %}
+	<h5>История</h5>
+	{% for article in articles %}
+		<h4><a href="/article/get/{{article.id}}">{{ article.article_title }}</a></h4>
+		<h6>{{ article.article_date }} </h6>
+		<hr>
+	{% endfor %}
+{% endblock %}

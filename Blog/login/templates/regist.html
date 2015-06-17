@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block Reg %}
+  <div class="col-sm-6 col-md-offset-4">
+    <form action="/auth/register/" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input class="button" type="submit" value="Регистрация">
+    </form>
+  </div>
+{% endblock %}

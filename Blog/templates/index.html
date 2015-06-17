@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{% static "static/css/bootstrap.css" %}" rel="stylesheet" type="text/css">
+		<div class="navbar navbar-default navbar-static-top" role="navigation">
+      		<div class="container">
+        		<div class="navbar-header">
+          			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            			<span class="sr-only">Toggle navigation</span>
+          			</button>
+          			<a class="navbar-brand" href="/">Главная</a>
+          			{% if username %}
+          				<a class="navbar-brand" href="/auth/logout/">Выйти ({{ username }})</a>	
+          			{% else %}
+          				<a class="navbar-brand" href="/auth/login/">Войти </a>
+          			{% endif %}
+        		</div>
+        	</div>
+        </div>	
+	</head>
+	<body>
+    <script src="{% static "static/js/jquery-1.11.3.js" %}"></script>
+		<script src="{% static "static/js/bootstrap.js" %}"></script>
+		<div class="container">
+  			<div class="row-fluid">
+    			<div class="col-xs-12 col-md-8">
+					{% block Artic %}{% endblock %}
+					{% block Reg %}{% endblock %}
+				</div>
+				<div class="col-xs-6 col-sm-4">
+					{% block List %}{% endblock %}
+    			</div>
+			</div>
+		</div>
+	</body>
+</html>
