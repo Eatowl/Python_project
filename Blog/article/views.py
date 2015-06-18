@@ -40,22 +40,15 @@ def Article(request, article_id=1):
 	slov.update(csrf(request))
 	return render_to_response('article.html', slov)
 
-
-def addarticle(request):
+def addcomment(request, article_id):
 	if request.POST:
-		form = ArticleForm(request.POST)
+		form = CommentForm(request.POST)
 		if form.is_valid():
-			Art = form.save(commit=False)
-			Art.article_article = article.objects.get(id = article_id)
-			Art.article_data = '2015-06-13 11:11:11'
+			Comment = form.save(commit=False)
+			Comment.comment_article = article.objects.get(id = article_id)
 			form.save()
 	return redirect('/article/get/%s/' % article_id)
 
+def addarticle(request):
+	return render_to_response('addarticle.html', {'username': auth.get_user(request)})
 
-@csrf_exempt
-def addcomment(request, post_id):
-	if request.is_ajax():
-		b = request.POST.get('comment_body')
-		c = {'comment_body': b}
-		d = simplejson.dumps(c)
-	return HttpResponse(d)

@@ -10,7 +10,6 @@ urlpatterns = patterns('',
     url(r'^3/', 'article.views.template_simple'),
     url(r'^article/all/$', 'article.views.personal_blog'),
     url(r'^article/get/(?P<article_id>\d+)/$', 'article.views.Article'),
-    url(r'^article/addcomment/(?P<post_id>\d+)/$', 'article.view.addcomment'),
     url(r'^article/addcomment/(?P<article_id>\d+)/$', 'article.views.addcomment'),
     url(r'^article/addarticle/$', 'article.views.addarticle'),
 

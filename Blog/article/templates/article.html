@@ -11,45 +11,11 @@
 		<h5> {{ c.comment_name }} </h5>
 		<h5> {{ c.comment_text }} </h5>
 	{% endfor %}
-	
-
-	<script>
-	function getCookie(name) {
-	    var cookieValue = null;
-	    if (document.cookie && document.cookie != '') {
-	        var cookies = document.cookie.split(';');
-	        for (var i = 0; i < cookies.length; i++) {
-	            var cookie = jQuery.trim(cookies[i]);
-	            // Does this cookie string begin with the name we want?
-	            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-	                break;
-	            }
-	        }
-	    }
-	    return cookieValue;
-	}
-	var csrftoken = getCookie('csrftoken');
-	        $( function() {
-	            $('#getForecast').click( function() {
-	                
-	                var data = {'comment_body': data};
-	                $.post( "/article/addcomment/3/", data, success, "json" );
-	            } );
-
-	            function success(data) {
-	            	alert(data.comment_body);
-	                
-	            }
-
-	        } );
-
-    </script>
-    {% csrf_token %}
-
-
-    <button id="getForecast" >Отправить</button>
-
-	
-
+	{% if username %}
+	<form action="/article/addcomment/{{ Article.id }}/" method="post">
+		{% csrf_token %}
+		{{form}}
+		<input type="submit" class="button" value="Добавить комментарий">
+	</form>	
+	{% endif %}
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+<form action="/article/addarticle/" method="post">
+		{% csrf_token %}
+		{{form2}}
+	<input type="submit" class="button" value="Добавить статью">
+	</form>	
+<div class="jumbotron">
+   <form action="/article/addcomment/{{ Article.id }}/" method='post'>
+         {% csrf_token %}
+         <textarea name="comment_body" cols="100" rows="10"></textarea>
+         <br>
+         <input type="submit" class="btn btn-primary" value="" />
+   </form>
+</div>
+{% endblock %}
