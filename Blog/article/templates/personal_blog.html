@@ -1,10 +1,5 @@
 {% extends 'index.html' %}
 {% block Artic %}
-	<form action="/article/addarticle/" method="post">
-		{% csrf_token %}
-		{{form2}}
-	<input type="submit" class="button" value="Добавить статью">
-	</form>	
 	{% for article in articles %}
 		<h4><a href="/article/get/{{article.id}}">{{ article.article_title }}</a></h4>
 		<p> {{ article.article_text }} </p>

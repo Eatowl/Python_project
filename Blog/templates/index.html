@@ -21,7 +21,6 @@
         		</div>
         	</div>
         </div>	
-    {% block content %}{% endblock %}
 	</head>
 	<body>
     <script src="{% static "static/js/jquery-1.11.3.js" %}"></script>
@@ -29,6 +28,7 @@
 		<div class="container">
   			<div class="row-fluid">
     			<div class="col-xs-12 col-md-8">
+          {% block content %}{% endblock %}
 					{% block Artic %}{% endblock %}
 					{% block Reg %}{% endblock %}
 				</div>

@@ -50,5 +50,9 @@ def addcomment(request, article_id):
 	return redirect('/article/get/%s/' % article_id)
 
 def addarticle(request):
-	return render_to_response('addarticle.html', {'username': auth.get_user(request)})
+	if request.POST:
+		form2 = ArticleForm(request.POST)
+		if form2.is_valid():
+			form2.save()
+		return render_to_response('addarticle.html')
 
